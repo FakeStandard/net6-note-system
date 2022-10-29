@@ -1,6 +1,18 @@
+using net6_note_system;
+using net6_note_system.DAL.IRepository;
+using net6_note_system.DAL.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// register db connect
+builder.Services.AddDbContext<NoteContext>();
+
+// register note repository
+builder.Services.AddScoped<INoteRepository, NoteRepository>();
+
+// register mvc
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
